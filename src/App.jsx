@@ -7,10 +7,13 @@ function App() {
   const [board, setBoard] = useState(Array(9).fill(null));
   const [turn, setTurn] = useState(Turns.X);
   const [winner, setWinner] = useState(status.playing);
+
   const className2 = winner !== status.playing ? 'board__decision' : 'inactive';
-  
+  const newBoard = [...board];
 
   const checkWinner = (boardCheck) => {
+    const isDraw = newBoard.every((square) => square !== null);
+
     for( const combo of COMBOS_WINNER){
       const [a, b, c] = combo;
       if(
@@ -18,7 +21,12 @@ function App() {
         boardCheck[a] === boardCheck[b] &&
         boardCheck[a] === boardCheck[c]
       ){
+        setTurn(boardCheck[a]);
         setWinner(status.winner);
+      } else{
+        if(isDraw){
+          setWinner(status.draw);
+        }
       }
     }
   }
@@ -34,32 +42,19 @@ function App() {
 
     /* Cambiar el turno */
     const newTurn = turn === Turns.X ? Turns.O : Turns.X;
-    console.log(newTurn)
-    /* console.log(newTurn) */
+    
     if(winner !== status.winner){
-      console.log('Buenas buenas');
-    } else{
       /* Actualizar el tablero */
-      const newBoard = [...board];
       newBoard[index] = turn;
       setBoard(newBoard);
-
       /* Actualizar el turno */
       setTurn(newTurn);
-
       /* Verificar si hay ganador */
       checkWinner(newBoard);
-
-      /* Verificar si hay empate */
-      const isDraw = newBoard.every((square) => square !== null);
-      if(isDraw){
-        setWinner(status.draw);
-      }
     }
   };
 
   const resetGame = () => {
-    console.log('Juego reiniciado');
     setBoard(Array(9).fill(null));
     setTurn(Turns.X);
     setWinner(status.playing);
@@ -95,7 +90,7 @@ function App() {
               <div className="board__text">
                 <h2>
                   {
-                    winner === status.winner ? `${turn === Turns.X ? 'O' : 'X'} es el ganador`
+                    winner === status.winner ? `${turn === Turns.X ? 'X' : 'O'} es el ganador`
                     : 'Hubo un empate'
                   }
                 </h2>

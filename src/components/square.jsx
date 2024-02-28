@@ -2,16 +2,11 @@ function Square({children, updateBoard, indexSquare, isSelected}){
     /* Clase para actualizar diseños del turno */
     const className = `square ${isSelected ? 'is-selected' : ''}`;
   
-    function handleClick(){
-      console.log('Hola buenas tardes')
-      updateBoard(indexSquare);
-    }
-  
     return(
-      <span className={className} onClick={handleClick}>
+      <span className={className} onClick={() => {updateBoard(indexSquare)}}>
         {children}
       </span>
     )
 };
 
-export { Square };
+export { Square }
