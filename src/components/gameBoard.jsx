@@ -22,8 +22,8 @@ function GameBoard ({board, updateBoard, selectTurn}){
       </section>
 
       <section className='board__turn'>
-        <Square isSelected={ selectTurn === Turns.X}>{Turns.X}</Square>
-        <Square isSelected={ selectTurn === Turns.O}>{Turns.O}</Square>
+        <Square isSelected={ selectTurn === Turns[0].icon}>{Turns[0].icon}</Square>
+        <Square isSelected={ selectTurn === Turns[1].icon}>{Turns[1].icon}</Square>
       </section>
     </article>
   )

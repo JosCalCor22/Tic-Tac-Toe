@@ -9,7 +9,7 @@ function TableResultGame ({ playerWinner, selectTurn, resetGame, defeatX, defeat
             <div className="board__result--title">
               <h2>
                 {
-                  playerWinner === status.winner ? `${selectTurn === Turns.X ? 'X' : 'O'} es el ganador`
+                  playerWinner === status.winner ? `${selectTurn === Turns[0].icon ? 'X' : 'O'} es el ganador`
                   : 'Hubo un empate'
                 }
               </h2>
@@ -27,12 +27,12 @@ function TableResultGame ({ playerWinner, selectTurn, resetGame, defeatX, defeat
                 </thead>
                 <tbody>
                   <tr className='result__table--player1'>
-                    <td>Player 1</td>
+                    <td>{Turns[0].name}</td>
                     <td>{victoryX}</td>
                     <td>{defeatX}</td>
                   </tr>
                   <tr className='result__table--player2'>
-                    <td>Player 2</td>
+                    <td>{Turns[1].name}</td>
                     <td>{victoryO}</td>
                     <td>{defeatO}</td>
                   </tr>

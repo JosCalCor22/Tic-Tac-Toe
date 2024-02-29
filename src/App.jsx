@@ -1,20 +1,23 @@
-import { useState } from 'react';
-import { GameBoard } from './components/gameBoard';
-import { TableResultGame } from './components/tableResultsGame';
 import { COMBOS_WINNER, Turns, status } from './components/variables';
+import { TableResultGame } from './components/tableResultsGame';
+import { FrontPageApp } from './components/frontPageApp';
+import { GameBoard } from './components/gameBoard';
+import { useState } from 'react';
+
 import './styles/App.css';
 import './styles/FrontPageApp.css';
+import './styles/ResultGameApp.css';
 
 function App() {
   /* States for the componets */
-  const [frontPageGame, setFrontPageGame] = useState(false);
-  const [pageBoardGame, setPageBoardGame] = useState(true);
+  const [pageBoardGame, setPageBoardGame] = useState(false);
+  const [frontPageGame, setFrontPageGame] = useState(true);
   const [resultGame, setResultGame] = useState(false);
 
   /* States for the game */
   const [board, setBoard] = useState(Array(9).fill(null));
   const [winner, setWinner] = useState(status.playing);
-  const [turn, setTurn] = useState(Turns.X);
+  const [turn, setTurn] = useState(Turns[0].icon);
   
   /* States for the table */
   const [victoryX, setVictoryX] = useState(0);
@@ -26,6 +29,11 @@ function App() {
   
   const newBoard = [...board];
 
+  const startGame = () => {
+    setFrontPageGame(false);
+    setPageBoardGame(true);
+  }
+
   const checkWinner = (boardCheck) => {
     const isDraw = newBoard.every((square) => square !== null);
 
@@ -36,12 +44,12 @@ function App() {
         boardCheck[a] === boardCheck[b] &&
         boardCheck[a] === boardCheck[c]
       ){
-        setTurn(boardCheck[a]);
-        setWinner(status.winner);
         setResultGame(true);
+        setTurn(boardCheck[a]);
         setPageBoardGame(false);
+        setWinner(status.winner);
 
-        if(boardCheck[a] === Turns.X){
+        if(boardCheck[a] === Turns[0].icon){
           setVictoryX(victoryX + 1);
           setDefeatO(defeatO + 1);
         } else{
@@ -67,7 +75,7 @@ function App() {
     }
 
     /* Cambiar el turno */
-    const newTurn = turn === Turns.X ? Turns.O : Turns.X;
+    const newTurn = turn === Turns[0].icon ? Turns[1].icon : Turns[0].icon;
     
     if(winner !== status.winner){
       /* Actualizar el tablero */
@@ -85,9 +93,10 @@ function App() {
     setDefeatX(0);
     setVictoryX(0);
     setVictoryO(0);
-    setTurn(Turns.X);
+    setTurn(Turns[0].icon);
     setResultGame(false);
-    setPageBoardGame(true);
+    setFrontPageGame(true);
+    setPageBoardGame(false);
     setWinner(status.playing);
     setBoard(Array(9).fill(null));
   }
@@ -101,8 +110,14 @@ function App() {
   return (
     <>
       <main className='board'>
-        { pageBoardGame ? (
-            <GameBoard board={board} updateBoard={updateBoard} selectTurn={turn} />
+        { frontPageGame ? (
+          <FrontPageApp 
+            startGame={startGame} />
+        ) : pageBoardGame ? (
+          <GameBoard 
+            board={board} 
+            selectTurn={turn} 
+            updateBoard={updateBoard} />
         ) : resultGame ? (
           <section className={className2}>
             <TableResultGame 
@@ -115,9 +130,7 @@ function App() {
             resetGame={resetGame}
             revangeGame={revangeGame} />
           </section>
-        ) : (
-          null
-        )
+        ) : null
         }
       </main>
     </>

@@ -1,7 +1,12 @@
-const Turns = {
-    X: 'X',
-    O: 'O',
-};
+const Turns = [
+    {
+        name: '',
+        icon: 'X'
+    }, {
+        name: '',
+        icon: 'O'
+    }
+];
   
 const status = {
 winner: true,
