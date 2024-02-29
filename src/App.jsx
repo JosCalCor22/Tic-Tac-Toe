@@ -5,6 +5,7 @@ import { GameBoard } from './components/gameBoard';
 import { useState } from 'react';
 
 import './styles/App.css';
+import './styles/responsive.css';
 import './styles/FrontPageApp.css';
 import './styles/ResultGameApp.css';
 
