@@ -3,8 +3,8 @@
 }
 .board{
   position: relative;
-  padding: 50px;
   border-radius: 20px;
+  padding: 40px 50px 55px 50px;
   border: 1px solid rgba(0, 0, 0, .3);
   background-color: var(--Cuartenary-Color);
 }
@@ -12,7 +12,8 @@
   place-items: center;
   text-align: center;
   display: grid;
-
+  width: 310px;
+  height: 410px;
 }
 .board__container h1{
   margin-bottom: 16px;
@@ -53,18 +54,3 @@
   border: 1px solid rgba(0, 0, 0, 1);
   background-color: var(--Secondary-Color);
 }
-.board__decision{
-  position: absolute;
-  z-index: 100;
-  padding: 20px;
-  top: 50%;
-  left: 50%;
-  border-radius: 8px;
-  background-color: #5c5c5c;
-  border: 1px solid white;
-  transform: translate(-50%, -50%);
-}
-.board__text{
-  text-align: center;
-}
-

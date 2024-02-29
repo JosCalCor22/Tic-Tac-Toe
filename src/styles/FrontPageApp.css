@@ -1,0 +1,110 @@
+.board__decision{
+  place-items: center;
+  text-align: center;
+  display: grid;
+  width: 310px;
+  height: 410px;
+  background-color: transparent;
+}
+
+.board__result--table{
+  width: 100%;
+}
+
+.board__result--title{
+  flex-direction: column;
+  display: flex;
+}
+
+.board__result--title h2{
+  font-size: 28px;
+}
+
+.board__result--title p{
+  margin: 20px 0 10px 0;
+}
+
+.board__result--title span{
+  text-align: left;
+  font-size: 18px;
+  font-weight: 500;
+}
+
+.result__table{
+  grid-template-columns: 80px auto auto;
+  grid-template-rows: 30px 75px;
+  display: grid;
+  width: 100%;
+  padding: 10px;
+  margin: 10px 0 35px 0;
+  border: 1px solid black;
+}
+
+.result__table thead{
+  grid-column: 1 / 4;
+  grid-row: 1 / 2;
+  border-bottom: 1px solid black;
+}
+
+.result__table thead tr{
+  display: flex;
+  column-gap: 28px;
+  font-weight: bold;
+}
+
+.result__table tbody{
+  grid-column: 1 / 4;
+  grid-row: 2 / 4;
+  padding-top: 2.5px;
+}
+
+.result__table--player1 {
+  justify-content: space-between;
+  display: flex;
+  padding: 10px 0;
+  border-bottom: 1px solid black;
+}
+
+.result__table--player2{
+  justify-content: space-between;
+  display: flex;
+  padding: 10px 0 0 0;
+}
+
+.result__table--player1 td:first-child, .result__table--player2 td:first-child{
+  width: 80px;
+  font-weight: bold;
+}
+
+.result__table--player1 td:not(:first-child), .result__table--player2 td:not(:first-child){
+  margin: 0 auto;
+}
+
+.board__result--buttons{
+  justify-content: center;
+  display: flex;
+  gap: 20px;
+}
+
+.board__result--buttons button{
+  cursor: pointer;
+  padding: 18px 20px;
+  transition: all 0.3s ease;
+  border: 1px solid black;
+}
+
+.board__result--buttons button:first-child{
+  background-color: var(--Secondary-Color);
+}
+
+.board__result--buttons button:last-child{
+  background-color: transparent;
+}
+
+.board__result--buttons button:hover{
+  background-color: var(--Quinary-Color);
+}
+
+.board__result--buttons button:hover{
+  background-color: var(--Primary-Color);
+}
