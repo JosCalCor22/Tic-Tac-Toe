@@ -1,14 +1,16 @@
 import { useState } from 'react';
+import { GameBoard } from './components/gameBoard';
+import { TableResultGame } from './components/tableResultsGame';
 import { COMBOS_WINNER, Turns, status } from './components/variables';
-import { Square } from './components/square';
-import './App.css'
+import './styles/App.css';
 
 function App() {
   const [board, setBoard] = useState(Array(9).fill(null));
-  const [turn, setTurn] = useState(Turns.X);
   const [winner, setWinner] = useState(status.playing);
+  const [turn, setTurn] = useState(Turns.X);
 
   const className2 = winner !== status.playing ? 'board__decision' : 'inactive';
+  
   const newBoard = [...board];
 
   const checkWinner = (boardCheck) => {
@@ -63,41 +65,10 @@ function App() {
   return (
     <>
       <main className='board'>
-        <h1>Tic-Tac-Toe</h1>
-        <section className='board__game'>
-          {
-            board.map((square , index) => {
-              return (
-                <Square 
-                  key={index} 
-                  indexSquare={index}
-                  updateBoard={updateBoard}>
-                  {square}
-                </Square>
-              )
-            })
-          }
-        </section>
-
-        <section className='board__turn'>
-          <Square isSelected={turn === Turns.X}>{Turns.X}</Square>
-          <Square isSelected={turn === Turns.O}>{Turns.O}</Square>
-        </section>
+        <GameBoard board={board} updateBoard={updateBoard} selectTurn={turn} />
 
         <section className={className2}>
-          {
-            winner !== status.playing && (
-              <div className="board__text">
-                <h2>
-                  {
-                    winner === status.winner ? `${turn === Turns.X ? 'X' : 'O'} es el ganador`
-                    : 'Hubo un empate'
-                  }
-                </h2>
-                <button onClick={resetGame}>Reiniciar Juego</button>
-              </div>
-            )
-          }
+          <TableResultGame playerWinner={winner} selectTurn={turn} resetGame={resetGame} />
         </section>
       </main>
     </>

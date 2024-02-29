@@ -1,6 +1,6 @@
 const Turns = {
-    X: 'x',
-    O: 'O'
+    X: 'X',
+    O: 'O',
 };
   
 const status = {

@@ -1,4 +1,4 @@
-function Square({children, updateBoard, indexSquare, isSelected}){
+function Square({ children, updateBoard, indexSquare, isSelected }){
     /* Clase para actualizar diseños del turno */
     const className = `square ${isSelected ? 'is-selected' : ''}`;
   
